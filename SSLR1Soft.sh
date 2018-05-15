@@ -1,4 +1,4 @@
-#!/bin/bash
+--agree-tos#!/bin/bash
 rpm -qa | grep "git-"
 if test $? -eq 1
 then
@@ -10,7 +10,7 @@ if [ ! -d "/root/letsencrypt/" ]; then
 fi
 
 service iptables stop
-./letsencrypt/letsencrypt-auto certonly --standalone -d $(hostname) --rsa-key-size 4096
+./letsencrypt/letsencrypt-auto certonly --standalone --agree-tos -d $(hostname) --rsa-key-size 4096
 service iptables start
 
 cd /etc/letsencrypt/live/$(hostname)/
