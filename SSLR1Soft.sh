@@ -1,7 +1,7 @@
 #!/bin/bash
 # Execute this script followed by the email address to which the Let's Encrypt certificate's notifications will be sent
 
-if [ $1 -eq 0 ]; then
+if [ -z "$1" ]; then
         echo "Missing argument."
         echo "Please run command followed by email address for LE notifications."
 fi
