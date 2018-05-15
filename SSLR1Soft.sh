@@ -4,6 +4,7 @@
 if [ -z "$1" ]; then
         echo "Missing argument."
         echo "Please run command followed by email address for LE notifications."
+        exit
 fi
 
 echo -e "\n### Checking requirements..."
