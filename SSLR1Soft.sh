@@ -26,7 +26,7 @@ openssl x509 -in fullchain.pem -inform PEM -out fullchain.pem.der -outform DER
 
 cd /usr/sbin/r1soft/jre/bin
 chmod 755 java keytool
-wget https://github.com/MegaS0ra/LetsEncryptForR1Soft/raw/master/importkey.zip
+wget -N https://github.com/MegaS0ra/LetsEncryptForR1Soft/raw/master/importkey.zip
 unzip -o importkey.zip
 
 ./java ImportKey /etc/letsencrypt/live/$(hostname)/privkey.pem.der /etc/letsencrypt/live/$(hostname)/fullchain.pem.der
