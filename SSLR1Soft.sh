@@ -21,7 +21,7 @@ fi
 
 echo -e "\n### Certificate creation..."
 service iptables stop
-./letsencrypt/letsencrypt-auto certonly --standalone --agree-tos -d $(hostname) --rsa-key-size 4096 --email $1
+./letsencrypt/letsencrypt-auto certonly --standalone --agree-tos --no-eff-email --manual-public-ip-logging-ok -d $(hostname) --rsa-key-size 4096 --email $1
 service iptables start
 
 echo -e "\n### Adding certificate to R1Soft..."
