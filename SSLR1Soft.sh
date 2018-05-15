@@ -1,10 +1,14 @@
 #!/bin/bash
 # Execute this script followed by the email address to which the Let's Encrypt certificate's notifications will be sent
 
+if [ $1 -eq 0 ]; then
+        echo "Missing argument."
+        echo "Please run command followed by email address for LE notifications."
+fi
+
 echo -e "\n### Checking requirements..."
 rpm -qa | grep "git-"
-if test $? -eq 1
-then
+if test $? -eq 1; then
         yum -y install git
 fi
 yum -y update nss nss-util nss-sysinit nss-tools wget curl ca-certificates openssl
