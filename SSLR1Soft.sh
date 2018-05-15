@@ -24,7 +24,7 @@ service iptables stop
 if [ ! -f "/etc/letsencrypt/live/$(hostname)/fullchain.pem" ]; then
         ./letsencrypt/letsencrypt-auto certonly --standalone --agree-tos --no-eff-email --manual-public-ip-logging-ok -d $(hostname) --rsa-key-size 4096 --email $1
 else
-        ./letsencrypt/letsencrypt-auto renew --standalone --agree-tos --no-eff-email --manual-public-ip-logging-ok -d $(hostname) --rsa-key-size 4096 --email $1
+        ./letsencrypt/letsencrypt-auto renew
 fiservice iptables start
 
 echo -e "\n### Adding certificate to R1Soft..."
