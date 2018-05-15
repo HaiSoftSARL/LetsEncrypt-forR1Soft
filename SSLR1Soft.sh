@@ -1,19 +1,25 @@
 #!/bin/bash
 # Execute this script followed by the email address to which the Let's Encrypt certificate's notifications will be sent
+
+echo -e "\n### Checking requirements..."
 rpm -qa | grep "git-"
 if test $? -eq 1
 then
         yum -y install git
 fi
+yum -y update nss nss-util nss-sysinit nss-tools wget curl ca-certificates openssl
 
+echo -e "\n### Installing Let's Encrypt..."
 if [ ! -d "/root/letsencrypt/" ]; then
         git clone https://github.com/letsencrypt/letsencrypt
 fi
 
+echo -e "\n### Certificate creation..."
 service iptables stop
 ./letsencrypt/letsencrypt-auto certonly --standalone --agree-tos -d $(hostname) --rsa-key-size 4096 --email $1
 service iptables start
 
+echo -e "\n### Adding certificate to R1Soft..."
 cd /etc/letsencrypt/live/$(hostname)/
 openssl pkcs8 -topk8 -nocrypt -in privkey.pem -inform PEM -out privkey.pem.der -outform DER
 openssl x509 -in fullchain.pem -inform PEM -out fullchain.pem.der -outform DER
