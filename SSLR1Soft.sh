@@ -1,4 +1,5 @@
---agree-tos#!/bin/bash
+#!/bin/bash
+# Execute this script followed by the email address to which the Let's Encrypt certificate's notifications will be sent
 rpm -qa | grep "git-"
 if test $? -eq 1
 then
@@ -10,7 +11,7 @@ if [ ! -d "/root/letsencrypt/" ]; then
 fi
 
 service iptables stop
-./letsencrypt/letsencrypt-auto certonly --standalone --agree-tos -d $(hostname) --rsa-key-size 4096
+./letsencrypt/letsencrypt-auto certonly --standalone --agree-tos -d $(hostname) --rsa-key-size 4096 --email $1
 service iptables start
 
 cd /etc/letsencrypt/live/$(hostname)/
