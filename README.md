@@ -1,6 +1,8 @@
 # LetsEncryptForR1Soft
 
 
-You can add a monthly cron to renew your certificates :
+You can add a cron every 10 days to renew your certificates :
 
-0 0 1 * * /root/SSLR1Soft.sh your@e.mail
+* * */10 * * /root/SSLR1Soft.sh your@e.mail
+
+(Let's Encrypt will only renew the cert if close to expiry).
