@@ -15,16 +15,17 @@ fi
 yum -y update nss nss-util nss-sysinit nss-tools wget curl ca-certificates openssl
 
 echo -e "\\n### Installing Let's Encrypt..."
-if [ ! -d "/root/letsencrypt/" ]; then
+if [ ! -d "/opt/letsencrypt/" ]; then
+        cd /opt/ || exit
         git clone https://github.com/letsencrypt/letsencrypt
 fi
 
 echo -e "\\n### Certificate creation..."
 service iptables stop
 if [ ! -f "/etc/letsencrypt/live/$(hostname)/fullchain.pem" ]; then
-        ./letsencrypt/letsencrypt-auto certonly --standalone --agree-tos --no-eff-email --manual-public-ip-logging-ok -d "$(hostname)" --rsa-key-size 4096 --email "$1"
+        /opt/letsencrypt/letsencrypt-auto certonly --standalone --agree-tos --no-eff-email --manual-public-ip-logging-ok -d "$(hostname)" --rsa-key-size 4096 --email "$1"
 else
-        ./letsencrypt/letsencrypt-auto renew
+        /opt/letsencrypt/letsencrypt-auto renew
 fi
 service iptables start
 
