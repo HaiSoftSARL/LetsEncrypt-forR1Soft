@@ -14,7 +14,7 @@ Here is what the script does :
 
 Just wget the script, change execution rights and launch it (followed by email address as argument) :  
 ```bash
-wget -N https://raw.githubusercontent.com/MegaS0ra/LetsEncryptForR1Soft/master/SSLR1Soft.sh ; chmod +x SSLR1Soft.sh
+wget -N https://raw.githubusercontent.com/HaiSoftSARL/LetsEncrypt-forR1Soft/master/SSLR1Soft.sh ; chmod +x SSLR1Soft.sh
 ```  
 ```bash
 ./SSLR1Soft.sh your@e.mail
