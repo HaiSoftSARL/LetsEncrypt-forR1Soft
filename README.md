@@ -25,3 +25,6 @@ You can add a cron every 10 days to renew your certificates :
 0 0 */10 * * /root/SSLR1Soft.sh your@e.mail
 ```  
 (Let's Encrypt will only renew the cert if close to expiry).
+
+--
+Tested and created on CentOS 7.
