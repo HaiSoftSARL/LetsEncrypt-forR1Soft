@@ -8,6 +8,7 @@ if [ -z "$1" ]; then
 fi
 
 echo -e "\\n### Checking requirements..."
+export LANG=en_US.UTF-8
 rpm -qa | grep "git-"
 if test $? -eq 1; then
         yum -y install git
@@ -52,7 +53,7 @@ echo -e "password\nimportkey\npassword\npassword" | ./keytool -keypasswd -alias 
 
 /bin/cp /root/keystore.ImportKey /root/keystore ; rm -f /root/keystore.ImportKey
 
-echo -e "password\noui" | ./keytool -import -alias intermed -file /etc/letsencrypt/live/"$(hostname)"/chain.pem -keystore /root/keystore -trustcacerts
+echo -e "password\nyes" | ./keytool -import -alias intermed -file /etc/letsencrypt/live/"$(hostname)"/chain.pem -keystore /root/keystore -trustcacerts
 
 /bin/cp /usr/sbin/r1soft/conf/keystore /usr/sbin/r1soft/conf/keystore.old
 /bin/cp /root/keystore /usr/sbin/r1soft/conf/keystore
